@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/viewpoint-videos/prettier-config.git"
+    "url": "git+https://github.com/viewpoint-videos/prettier-config.git"
   },
   "license": "MIT",
   "main": "prettier.config.js",
