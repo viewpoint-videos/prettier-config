@@ -26,15 +26,15 @@
     "test": "prettier . --check"
   },
   "dependencies": {
-    "@trivago/prettier-plugin-sort-imports": "^4.3.0"
+    "@trivago/prettier-plugin-sort-imports": "^5.2.1"
   },
   "devDependencies": {
-    "conventional-changelog-conventionalcommits": "^7.0.2",
-    "prettier": "^3.2.5",
-    "semantic-release": "^23.0.2"
+    "conventional-changelog-conventionalcommits": "^8.0.0",
+    "prettier": "^3.4.2",
+    "semantic-release": "^23.1.1"
   },
   "peerDependencies": {
-    "prettier": "^3.2.5"
+    "prettier": "^3.4.2"
   },
   "release": {
     "branches": [
