@@ -12,6 +12,7 @@ permissions:
   packages: write
   contents: write
   pull-requests: write
+  issues: write
 
 jobs:
   build:
