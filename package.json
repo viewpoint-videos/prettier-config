@@ -20,6 +20,9 @@
   "files": [
     "prettier.config.js"
   ],
+  "engines": {
+    "node": ">= 24"
+  },
   "scripts": {
     "prettier:fix": "prettier . --write",
     "semantic-release": "semantic-release",

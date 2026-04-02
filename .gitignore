@@ -4,3 +4,5 @@ node_modules/
 viewpoint-videos-prettier-config-*.tgz
 # snyk cache
 .dccache
+# Ignore yarn lock file
+yarn.lock
