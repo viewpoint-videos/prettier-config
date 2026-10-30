@@ -1,11 +1,63 @@
-# To get started with Dependabot version updates, you'll need to specify which
-# package ecosystems to update and where the package manifests are located.
-# Please see the documentation for all configuration options:
-# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
-
 version: 2
+registries:
+  npm-github:
+    type: npm-registry
+    url: https://npm.pkg.github.com
+    token: ${{secrets.DEPENDABOT_GITHUB_TOKEN}}
 updates:
+  # Check for updates to GitHub Actions every week
   - package-ecosystem: "github-actions"
+    # For github-actions, Dependabot expects repository root and scans .github/workflows automatically
     directory: "/"
     schedule:
       interval: "weekly"
+  # npm dependencies - Main configuration
+  # Note: Dependabot automatically prioritizes security updates
+  # and processes them regardless of schedule
+  - package-ecosystem: "npm"
+    directory: "/"
+    registries:
+      - npm-github
+    schedule:
+      # Daily checks ensure timely security updates
+      interval: "daily"
+      time: "09:00"
+      timezone: "Europe/London"
+    # Cool down period to reduce supply chain risk
+    cooldown:
+      default-days: 7
+      semver-major-days: 30
+      semver-minor-days: 7
+      semver-patch-days: 3
+    # Limit concurrent PRs to avoid overwhelming the team
+    open-pull-requests-limit: 3
+    groups:
+      # Security updates grouped into one PR
+      # Groups default to version updates only, so without this each security update gets its own PR
+      security-updates:
+        applies-to: security-updates
+        patterns:
+          - "*"
+      # Patch and minor updates grouped together
+      patch-and-minor-updates:
+        update-types:
+          - "patch"
+          - "minor"
+      # Major version updates grouped separately
+      major-updates:
+        update-types:
+          - "major"
+    # Allow all dependency updates
+    allow:
+      - dependency-type: "all"
+    # Add labels for easy filtering and automation
+    labels:
+      - "dependencies"
+    # Assign review team
+    reviewers:
+      - "viewpoint-videos/Developers"
+    # Add helpful PR commit message prefix
+    commit-message:
+      prefix: "chore"
+      prefix-development: "chore"
+      include: "scope"
