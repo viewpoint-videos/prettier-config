@@ -53,9 +53,6 @@ updates:
     # Add labels for easy filtering and automation
     labels:
       - "dependencies"
-    # Assign review team
-    reviewers:
-      - "viewpoint-videos/Developers"
     # Add helpful PR commit message prefix
     commit-message:
       prefix: "chore"
